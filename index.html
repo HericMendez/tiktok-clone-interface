@@ -15,12 +15,11 @@
     <title>Tecnologia Lupus</title>
     <link rel="stylesheet" href="assets/styles/navigation.css" />
     <link rel="stylesheet" href="assets/styles/reward-icon.css" />
-    <link rel="stylesheet" href="assets/styles/loading-animation.css">
+    <link rel="stylesheet" href="assets/styles/loading-animation.css" />
     <link rel="stylesheet" href="assets/styles/style.css" />
   </head>
 
   <body>
-
     <div class="header">
       <div class="hamburger-menu">
         <input id="menu__toggle" type="checkbox" />
@@ -52,53 +51,28 @@
         </ul>
       </div>
     </div>
-
-    <div  class="wallet">
-      <button >
-        Saldo: R$<span id="walletAmount">0</span>
+ <!--    <div class="like-buttons-container">
+      <button type="button" onclick="showReward()">
+        <i class="fa-solid fa-thumbs-up"></i>
       </button>
+      <button type="button" onclick="showReward()">
+        <i class="fa-solid fa-thumbs-down"></i>
+      </button>
+    </div> -->
+    <div class="wallet">
+      <button>Saldo: R$<span id="walletAmount">0</span></button>
     </div>
     <div id="reward-icon">
       <button onclick="openSurvey()" id="rewardBtn">
-        <img src="assets/media/ballon_black_orange.png" alt="" srcset="" />
+        <img
+          src="assets/media/images/ballon_black_orange.png"
+          alt=""
+          srcset=""
+        />
       </button>
     </div>
 
-    <div class="container">
-      <div class="video 1">
-        <video
-          muted
-          autoplay
-          playsinline
-          loop
-          controls
-          src="assets/media/video_01.mp4"
-        ></video>
-        </div>
-      <div class="video 2">
-        <video
-          muted
-          autoplay
-          playsinline
-          loop
-          controls
-          src="assets/media/video_02.mp4"
-        ></video>
-      </div>
-
-      <div class="video 3">
-        <video
-          muted
-          autoplay
-          playsinline
-          loop
-          controls
-          src="assets/media/video_03.mp4"
-        ></video>
-      </div>
-
-
-    </div>
+    <div id="video-container" class="container"></div>
     <div class="arrow left-arrow" onclick="prevVideo()">
       <i class="fa-solid fa-circle-arrow-left"></i>
     </div>
@@ -106,7 +80,6 @@
       <i class="fa-solid fa-circle-arrow-right"></i>
     </div>
     <div class="reward"></div>
-
 
     <div class="popup" id="popup">
       <div class="popup-content">
@@ -136,6 +109,7 @@
         <button id="sacarBtn">SACAR</button>
       </div>
     </div>
+
     <div class="popup-survey" id="popup2">
       <div class="popup-survey-content">
         <div class="popup-content-header">
@@ -147,10 +121,9 @@
           <h2 id="titulo">Responda a entrevista:</h2>
 
           <div id="input1" class="hidden">
-            <p>O vídeo é sobre futebol?</p>
+            <p><span id="pergunta1"></span></p>
             <div class="tooltip-bg">
               <input
-     
                 type="text"
                 placeholder="Escreva algo e pressione Enter..."
                 id="speech-input1"
@@ -160,7 +133,7 @@
           </div>
 
           <div id="input2" class="hidden">
-            <p>Nos 10 primeiros segundos tem gol?</p>
+            <p><span id="pergunta2"></span></p>
             <div class="tooltip-bg">
               <input
                 type="text"
@@ -173,8 +146,8 @@
             </div>
           </div>
 
-          <div  id="prompt" class="hidden popup-content-body">
-            <p>O conteúdo tem algo relacionado com +18?</p>
+          <div id="prompt" class="hidden popup-content-body">
+            <p><span id="pergunta3"></span></p>
             <div class="buttons-container">
               <button id="simBtn" class="btn">Sim</button>
               <button id="naoBtn" class="btn red">Não</button>
@@ -188,13 +161,15 @@
               </div>
             </div>
           </div>
-          
+
           <div id="mensagem" class="hidden">
-            <h3>
-              Obrigado por responder a entrevista!
-            </h3>
-     
-            <img  width="100px" src="assets/media/output-onlinegiftools.gif" alt="">
+            <h3>Obrigado por responder a entrevista!</h3>
+
+            <img
+              width="100px"
+              src="assets/media/images/output-onlinegiftools.gif"
+              alt=""
+            />
           </div>
         </div>
 
@@ -217,17 +192,19 @@
         <div class="notification-title">PIX RECEBIDO</div>
         <div class="notification-body">
           Você recebeu R$<span id="pixAmount">20,00</span>. Guarde seu dinheiro.
-              <audio id="notificationSound" src="assets/media/notificacao.mp3"></audio>
+          <audio
+            id="notificationSound"
+            src="assets/media/audio/notificacao.mp3"
+          ></audio>
         </div>
       </div>
     </div>
-
-
-
+    <audio id="moneySound" src="assets/media/audio/cash.mp3"></audio>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <audio id="moneySound" src="assets/media/cash.mp3"></audio>
+
     <script src="assets/scripts/reward-icon.js"></script>
     <script src="assets/scripts/surveyModal.js"></script>
+    <script src="assets/scripts/dados.js"></script>
     <script src="assets/scripts/main.js"></script>
   </body>
 </html>

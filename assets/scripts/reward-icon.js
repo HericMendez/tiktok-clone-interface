@@ -1,24 +1,19 @@
 const survey = document.getElementById("popup2");
 
-
-
-
 dragElement(document.getElementById("reward-icon"));
 
-
-
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
- 
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+
   if (document.getElementById(elmnt.id + "header")) {
     /* if present, the header is where you move the DIV from:*/
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-
   } else {
-    
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
-    
   }
 
   function dragMouseDown(e) {
@@ -35,20 +30,17 @@ function dragElement(elmnt) {
   }
 
   function elementDrag(e) {
-
     e.preventDefault();
     // calculate the new cursor position:
     document.getElementById("rewardBtn").style.opacity = "0.5";
-    
+
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-
-  
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
   }
 
   function closeDragElement() {
@@ -58,20 +50,16 @@ function dragElement(elmnt) {
     document.getElementById("rewardBtn").style.opacity = "1";
   }
 }
-function openSurvey(){
-    survey.style.display = 'flex';
-    startForm()
-
+function openSurvey() {
+  survey.style.display = "flex";
+  startForm();
 }
 
-
-function closeSurvey(){
-    survey.style.display = 'none';
-
+function closeSurvey() {
+  survey.style.display = "none";
 }
 
 function showSuccessNotification() {
-
   Swal.fire({
     title: "Saque realizado com sucesso!",
     text: `O valor está sendo processado.`,
