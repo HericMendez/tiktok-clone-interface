@@ -295,7 +295,9 @@ function renderVideoDivs(videoIndex) {
     playsinline
     loop
     controls
-    src="assets/media/videos/${dados[videoIndex - 1].video}"
+    src="https://cdn.jsdelivr.net/gh/HericMendez/tiktok-clone-interface@master/assets/media/videos/${
+      dados[videoIndex - 1].video
+    }"
   ></video>
   </div> 
 `;
