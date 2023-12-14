@@ -2,6 +2,20 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function clearForm(elements) {
+  for (let i = 0; i < elements.length; i++) {
+    //console.log(elements[i].childNodes[3].childNodes[1]?.value == "");
+    // console.log(!elements[i].classList.contains("hidden"));
+    if (!elements[i].classList.contains("hidden")) {
+      elements[i].classList.add("hidden");
+    }
+    if (elements[i].childNodes[3].childNodes[1]?.value) {
+      console.log(elements[i].childNodes[3].childNodes[1].value);
+      elements[i].childNodes[3].childNodes[1].value = "";
+    }
+  }
+}
+
 async function showElementWithDelay(element, delayTime) {
   document.getElementById("loading").classList.remove("hidden");
   await delay(delayTime);
@@ -16,10 +30,12 @@ async function startForm() {
     document.getElementById("input1"),
     document.getElementById("input2"),
   ];
-
+  const prompt = document.getElementById("prompt");
+  const msg = document.getElementById("mensagem");
+  clearForm([...inputs, prompt, msg]);
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
-    console.log(inputs[i].childNodes[3].childNodes[1].value);
+    //console.log(inputs[i].childNodes[3].childNodes[1].value);
     await showElementWithDelay(input, 2000);
     await new Promise((resolve) => {
       input.addEventListener("focusout", function handler() {
@@ -37,14 +53,17 @@ async function startForm() {
 
             resolve();
           } else {
-            console.log("campo vazio!");
+            Swal.fire({
+              icon: "error",
+              title: "Atenção!",
+              text: "Digite algo para continuar!",
+            });
           }
         }
       });
     });
   }
 
-  const prompt = document.getElementById("prompt");
   await showElementWithDelay(prompt, 2000);
 
   const simBtn = document.getElementById("simBtn");
@@ -53,10 +72,12 @@ async function startForm() {
   const buttonsHandler = async () => {
     prompt.removeEventListener("blur", buttonsHandler);
 
-    await showElementWithDelay(document.getElementById("mensagem"), 2000);
+    await showElementWithDelay(msg, 2000);
     setTimeout(() => {
+      clearForm([...inputs, prompt, msg]);
       closeSurvey();
-    }, 4000);
+      showReward();
+    }, 2000);
   };
 
   simBtn.addEventListener("click", buttonsHandler);

@@ -12,8 +12,6 @@ console.log(maxPrize);
 function showReward() {
   // Tocando o som de dinheiro
 
-
-
   if (walletAmount < maxPrize) {
     walletAmount += prizeValue;
     document.getElementById("moneySound").play();
@@ -31,7 +29,7 @@ function showReward() {
 
     console.log(walletAmount);
     setTimeout(() => {
-      rewardElement.textContent = ""; // Limpar a mensagem após 2 segundos
+      rewardElement.innerText = ""; // Limpar a mensagem após 2 segundos
       rewardElement.classList.remove("animated"); // Remover a classe de animação
     }, 2000); // A mensagem desaparecerá após 2 segundos
 
@@ -63,32 +61,57 @@ function mostrarAlerta(texto) {
   }, 2000);
 }
 
-function showVideo(videoIndex) {
+function showVideo(videoIndex, direction) {
   const videos = document.querySelectorAll(".video");
 
   videos.forEach((video, index) => {
+    if (direction === "next") {
+      video.style.transformOrigin = "right";
+      console.log("next");
+    } else if (direction === "prev") {
+      video.style.transformOrigin = "left";
+      console.log("prev");
+    }
+
     if (index === videoIndex - 1) {
+      /*     window.setTimeout(function () {
       video.style.display = "block";
+    }, 300); // timed to match animation-duration */
+      window.setTimeout(function () {
+        video.style.display = "block";
+      }, 300); // timed to match animation-duration
+
+      video.style.transform = "scaleX(1)";
     } else {
-      video.style.display = "none";
+      video.style.transform = "scaleX(0)";
+      video.style.display = "block";
+
+      window.setTimeout(function () {
+        video.style.display = "none";
+      }, 300); // timed to match animation-duration
     }
   });
   currentVideoIndex = videoIndex;
 }
-
+/* videos.forEach((video, index) => {
+  if (index === videoIndex - 1) {
+    video.style.transform = "scale(1)";
+    video.style.transition = "all .3s ease";
+  } else {
+    video.style.transform = "scale(0)";
+  }
+});
+currentVideoIndex = videoIndex;
+ */
 function prevVideo() {
   if (currentVideoIndex > 1) {
-    showVideo(currentVideoIndex - 1);
+    showVideo(currentVideoIndex - 1, "prev");
   }
 }
 
 function nextVideo() {
-  console.log("ok")
   if (currentVideoIndex < numberOfVideos) {
-    showVideo(currentVideoIndex + 1);
-  } else if (currentVideoIndex === 3) {
-    // Redirecionar para a "principal_pagina.html"
-    //window.location.href = "principal_pagina.html";
+    showVideo(currentVideoIndex + 1, "next");
   }
 }
 
