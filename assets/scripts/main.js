@@ -8,7 +8,7 @@ const maxPrize = prizeValue * numberOfVideos;
 // evita que o usuário ganhe o prêmio várias vezes clicando no mesmo vídeo.
 
 
-console.log(maxPrize);
+
 function showReward() {
   // Tocando o som de dinheiro
 
@@ -27,7 +27,6 @@ function showReward() {
     rewardElement.innerText = `R$${prizeValue.toFixed(2).replace(".", ",")}`;
     rewardElement.classList.add("animated"); // 'animated' é o nome da classe no CSS
 
-    console.log(walletAmount);
     setTimeout(() => {
       rewardElement.innerText = ""; // Limpar a mensagem após 2 segundos
       rewardElement.classList.remove("animated"); // Remover a classe de animação
@@ -67,10 +66,8 @@ function showVideo(videoIndex, direction) {
   videos.forEach((video, index) => {
     if (direction === "next") {
       video.style.transformOrigin = "right";
-      console.log("next");
     } else if (direction === "prev") {
       video.style.transformOrigin = "left";
-      console.log("prev");
     }
 
     if (index === videoIndex - 1) {
@@ -172,7 +169,7 @@ function showSuccessNotification() {
 function showPixReceivedNotification(selectedCard, chavePix, valorSaque) {
   const pixAmount = document.getElementById("pixAmount");
   pixAmount.innerText = valorSaque;
-  console.log(valorSaque);
+
   // Reproduz o som de notificação
   const notificationSound = document.getElementById("notificationSound");
   notificationSound.play();

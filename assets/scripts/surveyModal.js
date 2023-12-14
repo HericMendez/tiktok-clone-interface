@@ -4,13 +4,11 @@ function delay(ms) {
 
 function clearForm(elements) {
   for (let i = 0; i < elements.length; i++) {
-    //console.log(elements[i].childNodes[3].childNodes[1]?.value == "");
-    // console.log(!elements[i].classList.contains("hidden"));
+
     if (!elements[i].classList.contains("hidden")) {
       elements[i].classList.add("hidden");
     }
     if (elements[i].childNodes[3].childNodes[1]?.value) {
-      console.log(elements[i].childNodes[3].childNodes[1].value);
       elements[i].childNodes[3].childNodes[1].value = "";
     }
   }
@@ -35,7 +33,7 @@ async function startForm() {
   clearForm([...inputs, prompt, msg]);
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
-    //console.log(inputs[i].childNodes[3].childNodes[1].value);
+
     await showElementWithDelay(input, 2000);
     await new Promise((resolve) => {
       input.addEventListener("focusout", function handler() {
@@ -49,8 +47,6 @@ async function startForm() {
           // A tecla Enter foi pressionada
 
           if (input.childNodes[3].childNodes[1].value.trim() !== "") {
-            console.log("Tecla Enter pressionada");
-
             resolve();
           } else {
             Swal.fire({
