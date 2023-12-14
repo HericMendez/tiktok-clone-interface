@@ -2,31 +2,34 @@ let walletAmount = 0; //Valor inicial do prêmio
 let likeCount = 0; //número de likes no vídeo (não está sendo exibido)
 let currentVideoIndex = 1; //índice do vídeo atual (valor de referência)
 const numberOfVideos = 3; //quantidade de vídeos, mudar esse valor se adicionar/remover vídeos
-const prizeValue = 17; //valor exibido ao clicar em like/dislike
-const maxPrize = prizeValue * numberOfVideos; 
+const prizeValues = [34.7, 38, 46]; //valores exibidos ao clicar em like/dislike
+const maxPrize = prizeValues.reduce((partialSum, a) => partialSum + a, 0);
 //prêmio máximo possível ao clicar em todos os vídeos.
 // evita que o usuário ganhe o prêmio várias vezes clicando no mesmo vídeo.
-
-
-
+console.log;
 function showReward() {
   // Tocando o som de dinheiro
 
-  if (walletAmount < maxPrize) {
-    walletAmount += prizeValue;
-    document.getElementById("moneySound").play();
-  } else {
-    walletAmount = maxPrize;
-  }
-
   // Atualizando o saldo na "carteira"
   if (currentVideoIndex > 0 && currentVideoIndex <= numberOfVideos) {
-    document.getElementById("walletAmount").innerText = walletAmount;
-
     const rewardElement = document.querySelector(".reward");
-    rewardElement.innerText = `R$${prizeValue.toFixed(2).replace(".", ",")}`;
-    rewardElement.classList.add("animated"); // 'animated' é o nome da classe no CSS
+    console.log(prizeValues[currentVideoIndex - 1]);
+    if (walletAmount < maxPrize) {
+      walletAmount += prizeValues[currentVideoIndex - 1];
+      rewardElement.classList.add("animated");
+      document.getElementById("moneySound").play();
+    } else {
+      walletAmount = maxPrize;
+    }
+    console.log(walletAmount);
 
+    rewardElement.innerText = `R$${prizeValues[currentVideoIndex - 1]
+      .toFixed(2)
+      .replace(".", ",")}`;
+
+    document.getElementById("walletAmount").innerText = walletAmount
+      .toFixed(2)
+      .replace(".", ",");
     setTimeout(() => {
       rewardElement.innerText = ""; // Limpar a mensagem após 2 segundos
       rewardElement.classList.remove("animated"); // Remover a classe de animação
@@ -35,8 +38,9 @@ function showReward() {
     likeCount++;
 
     updateLikeCount();
-
-    nextVideo();
+    setTimeout(() => {
+      nextVideo();
+    }, 2000); //delay de 2s para animaçao ser exibida antes do proximo video
   }
 
   // Adicionando classe para animar o texto
@@ -65,9 +69,9 @@ function showVideo(videoIndex, direction) {
 
   videos.forEach((video, index) => {
     if (direction === "next") {
-      video.style.transformOrigin = "right";
-    } else if (direction === "prev") {
       video.style.transformOrigin = "left";
+    } else if (direction === "prev") {
+      video.style.transformOrigin = "right";
     }
 
     if (index === videoIndex - 1) {
@@ -181,4 +185,3 @@ function showPixReceivedNotification(selectedCard, chavePix, valorSaque) {
     pixNotification.style.display = "none"; // Oculta a notificação após 5 segundos
   }, 5000); // A notificação será ocultada após 5 segundos (5000 milissegundos)
 }
-

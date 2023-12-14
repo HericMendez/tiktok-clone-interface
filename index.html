@@ -20,13 +20,7 @@
   </head>
 
   <body>
-    <!--     <div class="header">
-        Tecnologia Lupus
-        <div class="like-count">Likes: 0</div>
-        <div class="wallet">
-            Saldo: R$<span id="walletAmount">0</span>
-        </div>
-    </div> -->
+
     <div class="header">
       <div class="hamburger-menu">
         <input id="menu__toggle" type="checkbox" />
@@ -58,22 +52,15 @@
         </ul>
       </div>
     </div>
-<!--     <div class="like-buttons-container">
-      <button type="button" onclick="showReward()">
-        <i class="fa-solid fa-thumbs-up"></i>
-      </button>
-      <button type="button" onclick="showReward()">
-        <i class="fa-solid fa-thumbs-down"></i>
-      </button>
-    </div> -->
-    <div style="" class="wallet">
-      <button onclick="openSurvey()">
+
+    <div  class="wallet">
+      <button >
         Saldo: R$<span id="walletAmount">0</span>
       </button>
     </div>
     <div id="reward-icon">
       <button onclick="openSurvey()" id="rewardBtn">
-        <img src="assets/media/ballon_white.png" alt="" srcset="" />
+        <img src="assets/media/ballon_black_orange.png" alt="" srcset="" />
       </button>
     </div>
 
@@ -87,8 +74,7 @@
           controls
           src="assets/media/video_01.mp4"
         ></video>
-      </div>
-
+        </div>
       <div class="video 2">
         <video
           muted
@@ -111,16 +97,7 @@
         ></video>
       </div>
 
-      <!--             <div class="info">
-        <p style="font-size: 10px; color: black">
-          De a sua recomendação para prosseguir...
-        </p>
-        <button class="like-button" onclick="showReward()">Curtir</button>
-        <button class="dislike-button" onclick="showReward()">
-          Não Recomendo
-        </button>
-      </div>
-      <p>De a sua recomendação para prosseguir!</p> -->
+
     </div>
     <div class="arrow left-arrow" onclick="prevVideo()">
       <i class="fa-solid fa-circle-arrow-left"></i>
@@ -130,38 +107,6 @@
     </div>
     <div class="reward"></div>
 
-    <!--     <div class="bottom-menu" onclick="mostrarAlerta('Início')">
-        <div class="menu-item">
-            <a href="#">
-                <div class="menu-icon"><i class="fas fa-home"></i></div>
-                Início
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="#">
-                <div class="menu-icon"><i class="fas fa-search"></i></div>
-                Descobrir
-            </a>
-        </div>
-        <div class="menu-item" id="openPopupBtn">
-            <a href="#">
-                <div class="menu-icon"><i class="fas fa-plus"></i></div>
-                Sacar
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="#">
-                <div class="menu-icon"><i class="fas fa-envelope"></i></div>
-                Mensagens
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="#">
-                <div class="menu-icon"><i class="fas fa-user"></i></div>
-                Perfil
-            </a>
-        </div>
-    </div> -->
 
     <div class="popup" id="popup">
       <div class="popup-content">
@@ -249,7 +194,7 @@
               Obrigado por responder a entrevista!
             </h3>
      
-            <img width="100px" src="assets/media/ok.png" alt="">
+            <img  width="100px" src="assets/media/output-onlinegiftools.gif" alt="">
           </div>
         </div>
 
@@ -272,11 +217,13 @@
         <div class="notification-title">PIX RECEBIDO</div>
         <div class="notification-body">
           Você recebeu R$<span id="pixAmount">20,00</span>. Guarde seu dinheiro.
+              <audio id="notificationSound" src="assets/media/notificacao.mp3"></audio>
         </div>
       </div>
     </div>
 
-    <audio id="notificationSound" src="notificacao.mp3"></audio>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <audio id="moneySound" src="assets/media/cash.mp3"></audio>
     <script src="assets/scripts/reward-icon.js"></script>
